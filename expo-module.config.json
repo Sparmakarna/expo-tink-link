@@ -1,9 +1,9 @@
 {
-  "platforms": ["ios", "tvos", "android", "web"],
-  "ios": {
-    "modules": ["ExpoTinkLinkModule"]
-  },
-  "android": {
-    "modules": ["expo.modules.tinklink.ExpoTinkLinkModule"]
-  }
+    "platforms": ["ios", "android"],
+    "ios": {
+        "modules": ["ExpoTinkLinkModule"]
+    },
+    "android": {
+        "modules": ["expo.modules.tinklink.ExpoTinkLinkModule"]
+    }
 }

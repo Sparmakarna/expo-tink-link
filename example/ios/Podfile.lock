@@ -38,6 +38,7 @@ PODS:
     - Yoga
   - ExpoTinkLink (0.1.0):
     - ExpoModulesCore
+    - TinkLink
   - FBLazyVector (0.74.1)
   - fmt (9.1.0)
   - glog (0.3.5)
@@ -1202,6 +1203,7 @@ PODS:
     - React-perflogger (= 0.74.1)
     - React-utils (= 0.74.1)
   - SocketRocket (0.7.0)
+  - TinkLink (3.0.0)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -1273,6 +1275,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - SocketRocket
+    - TinkLink
 
 EXTERNAL SOURCES:
   boost:
@@ -1411,7 +1414,7 @@ SPEC CHECKSUMS:
   ExpoFont: c84702079267ae51161c20bb8b925670907ffa2f
   ExpoKeepAwake: 3b8815d9dd1d419ee474df004021c69fdd316d08
   ExpoModulesCore: 828d63de45d4fbacabe2963fc406a8e9daeed992
-  ExpoTinkLink: afe952ca834744e38cbc8dc2f94b368467e413e2
+  ExpoTinkLink: faa05ad8c15fb1d916f5e8e46e73a5f0b775e852
   FBLazyVector: 898d14d17bf19e2435cafd9ea2a1033efe445709
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
@@ -1464,6 +1467,7 @@ SPEC CHECKSUMS:
   React-utils: 3285151c9d1e3a28a9586571fc81d521678c196d
   ReactCommon: f42444e384d82ab89184aed5d6f3142748b54768
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
+  TinkLink: 845ca4f0c70033bb324cf400b5ad26995b0937af
   Yoga: b9a182ab00cf25926e7f79657d08c5d23c2d03b0
 
 PODFILE CHECKSUM: de44600dfb22d17d9c2082ed2e95a46d2bda468f

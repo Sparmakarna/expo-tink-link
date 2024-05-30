@@ -1,2 +1,10 @@
-<manifest>
+<manifest package="expo.modules.tinklink"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="expo.modules.tinklink.ExpoTinkLinkActivity"
+            android:exported="true">
+        </activity>
+    </application>
 </manifest>

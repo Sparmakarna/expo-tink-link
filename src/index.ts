@@ -1,26 +1,23 @@
-import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-core';
+import ExpoTinkLinkModule from "./ExpoTinkLinkModule";
 
-// Import the native module. On web, it will be resolved to ExpoTinkLink.web.ts
-// and on native platforms to ExpoTinkLink.ts
-import ExpoTinkLinkModule from './ExpoTinkLinkModule';
-import ExpoTinkLinkView from './ExpoTinkLinkView';
-import { ChangeEventPayload, ExpoTinkLinkViewProps } from './ExpoTinkLink.types';
-
-// Get the native constant value.
-export const PI = ExpoTinkLinkModule.PI;
-
-export function hello(): string {
-  return ExpoTinkLinkModule.hello();
+export async function init(
+    authCode: string,
+    clientId: string,
+    redirectUri: string
+): Promise<string> {
+    return await ExpoTinkLinkModule.init(authCode, clientId, redirectUri);
 }
 
-export async function setValueAsync(value: string) {
-  return await ExpoTinkLinkModule.setValueAsync(value);
+export async function updateConsent(
+    authCode: string,
+    clientId: string,
+    redirectUri: string,
+    credentialsId: string
+): Promise<string> {
+    return await ExpoTinkLinkModule.updateConsent(
+        authCode,
+        clientId,
+        redirectUri,
+        credentialsId
+    );
 }
-
-const emitter = new EventEmitter(ExpoTinkLinkModule ?? NativeModulesProxy.ExpoTinkLink);
-
-export function addChangeListener(listener: (event: ChangeEventPayload) => void): Subscription {
-  return emitter.addListener<ChangeEventPayload>('onChange', listener);
-}
-
-export { ExpoTinkLinkView, ExpoTinkLinkViewProps, ChangeEventPayload };

@@ -14,34 +14,56 @@ class ExpoTinkLinkModule : Module() {
     Name("ExpoTinkLink")
 
     // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
-    Constants(
-      "PI" to Math.PI
-    )
-
-    // Defines event names that the module can send to JavaScript.
-    Events("onChange")
-
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("hello") {
-      "Hello world! 👋"
+    AsyncFunction("init") Coroutine { authCode: String, clientId: String, redirectUri: String ->
+        val contractOptions = ExpoTinkLinkContractOptions(authCode, clientId, redirectUri)
+        launchContract({ tinkLinkLauncher.launch(contractOptions) }, contractOptions)
     }
 
-    // Defines a JavaScript function that always returns a Promise and whose native code
-    // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { value: String ->
-      // Send an event to JavaScript.
-      sendEvent("onChange", mapOf(
-        "value" to value
-      ))
+    AsyncFunction("updateConsent") Coroutine { authCode: String, clientId: String, redirectUri: String, credentialsId: String ->
+        val contractOptions = ExpoTinkLinkContractOptions(authCode, clientId, redirectUri, credentialsId)
+        launchContract({ tinkLinkLauncher.launch(contractOptions) }, contractOptions)
     }
 
-    // Enables the module to be used as a native view. Definition components that are accepted as part of
-    // the view definition: Prop, Events.
-    View(ExpoTinkLinkView::class) {
-      // Defines a setter for the `name` prop.
-      Prop("name") { view: ExpoTinkLinkView, prop: String ->
-        println(prop)
-      }
+
+    RegisterActivityContracts {
+        tinkLinkLauncher = registerForActivityResult(
+            ExpoTinkLinkContract(this@ExpoTinkLinkModule)
+        ) { input, result -> handleResultUponActivityDestruction(result, input) }
     }
   }
+
+   private lateinit var tinkLinkLauncher: AppContextActivityResultLauncher<ExpoTinkLinkContractOptions, ExpoTinkLinkContractResult>
+
+    private fun handleResultUponActivityDestruction(result: ExpoTinkLinkContractResult, options: ExpoTinkLinkContractOptions) {
+        if (result is ExpoTinkLinkContractResult.Success) {
+            // do nothing
+        }
+    }
+
+    // result
+    private suspend fun launchPicker(
+        pickerLauncher: suspend () -> ExpoTinkLinkContractResult,
+    ): ExpoTinkLinkContractResult.Success = withContext(Dispatchers.Main) {
+        when (val pickingResult = pickerLauncher()) {
+            is ExpoTinkLinkContractResult.Success -> pickingResult
+            is ExpoTinkLinkContractResult.Cancelled -> throw OperationCanceledException()
+            is ExpoTinkLinkContractResult.Error -> throw OperationCanceledException()
+        }
+    }
+
+    private suspend fun launchContract(
+        pickerLauncher: suspend () -> ExpoTinkLinkContractResult,
+        options: ExpoTinkLinkContractOptions,
+    ): String {
+        return try {
+            var result = launchPicker(pickerLauncher)
+            if(result.data != null) {
+                return result.data
+            } else {
+                return "error"
+            }
+        } catch (cause: OperationCanceledException) {
+            return "error"
+        }
+    }
 }
