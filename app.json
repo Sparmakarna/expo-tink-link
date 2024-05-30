@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "expo-tink-link",
+    "slug": "expo-tink-link",
+    "version": "0.1.0",
+    "description": "Tink Link for Expo",
+    "sdkVersion": "51.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "android": {
+      "package": "com.sixtenk.expotinklink"
+    }
+  }
+}

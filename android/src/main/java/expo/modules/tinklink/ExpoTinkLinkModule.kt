@@ -1,7 +1,12 @@
 package expo.modules.tinklink
 
+import androidx.core.os.OperationCanceledException
+import expo.modules.kotlin.activityresult.AppContextActivityResultLauncher
+import expo.modules.kotlin.functions.Coroutine
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ExpoTinkLinkModule : Module() {
   // Each module class must implement the definition function. The definition consists of components

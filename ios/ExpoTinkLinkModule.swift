@@ -19,7 +19,7 @@ public class ExpoTinkLinkModule: Module {
             return
         }
         
-        let configuration = Configuration(clientID: clientId, redirectURI: redirectUri)
+        let configuration = Configuration(clientID: clientId, redirectURI: redirectUri, baseDomain: BaseDomain.eu)
         let controller = Tink.Transactions.connectAccountsForContinuousAccess(configuration: configuration, market: Market(code: "SE"), authorizationCode: AuthorizationCode(authCode)) { [] result in
             currentViewController.presentedViewController?.dismiss(animated: true)
             switch result {
@@ -38,7 +38,7 @@ public class ExpoTinkLinkModule: Module {
             return
         }
         
-        let configuration = Configuration(clientID: clientId, redirectURI: redirectUri)
+        let configuration = Configuration(clientID: clientId, redirectURI: redirectUri, baseDomain: BaseDomain.eu)
         let controller = Tink.Transactions.updateConsent(configuration: configuration, authorizationCode: AuthorizationCode(authCode), credentialsID: Credentials.ID(stringLiteral: credentialsId)) { [] result in
             currentViewController.presentedViewController?.dismiss(animated: true)
             switch result {
