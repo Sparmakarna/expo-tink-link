@@ -1,6 +1,6 @@
 {
     "name": "expo-tink-link",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Tink Link for Expo",
     "main": "build/index.js",
     "types": "build/index.d.ts",
