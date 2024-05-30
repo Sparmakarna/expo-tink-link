@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-tink-link": ["../src/index"],
+      "expo-tink-link/*": ["../src/*"]
+    }
+  }
+}
